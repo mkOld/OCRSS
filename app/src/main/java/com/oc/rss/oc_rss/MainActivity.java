@@ -1,6 +1,7 @@
 package com.oc.rss.oc_rss;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     Button myButton;
     Context myContext;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(myContext, "CA MARCHE !", Toast.LENGTH_SHORT).show();
                 Log.i("haja", "Ca marche !!!");
+                Intent myIntent = new Intent(myContext, NextActivity.class);
+                startActivity(myIntent);
+                MainActivity.this.finish(); // we closed this activity after launch the new one
             }
         });
     }
