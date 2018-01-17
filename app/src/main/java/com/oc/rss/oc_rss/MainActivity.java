@@ -4,19 +4,26 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.apache.commons.io.IOUtils;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity {
 
     Button myButton;
     Context myContext;
-
+    TextView textViewHtmlContent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.finish(); // we closed this activity after launch the new one
             }
         });
+        textViewHtmlContent = (TextView)findViewById(R.id.tvHTMLText);
+        loadHtmlText();
     }
 
     @Override
@@ -59,4 +68,17 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    private void loadHtmlText(){
+        final InputStream stream = getResources().openRawResource(R.raw.content);
+        final String text;
+        try {
+            text = IOUtils.toString(stream);
+            textViewHtmlContent.setText(Html.fromHtml(text));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }

@@ -6,39 +6,45 @@
     android:layout_height="match_parent"
     tools:context="com.oc.rss.oc_rss.MainActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/txtHello"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:text="Hello World!"
             android:gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_weight="1"/>
+            app:layout_constraintTop_toTopOf="parent"/>
 
-        <ImageView
-            android:id="@+id/imgAndroCool"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:src="@drawable/cool"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            />
+        <ScrollView
+            android:id="@+id/svHTMLText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/txtHello"
+            android:layout_above="@+id/btnClickHere">
+            <TextView
+                android:id="@+id/tvHTMLText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+        </ScrollView>
+
 
         <Button
             android:id="@+id/btnClickHere"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/click_here"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:layout_alignParentBottom="true"
+            />
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
