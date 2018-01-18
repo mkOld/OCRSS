@@ -1,0 +1,592 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset='utf-8'>
+    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+
+    <title>Git - Paramétrage à la première utilisation de Git</title>
+
+    <link href='/favicon.ico' rel='shortcut icon' type='image/x-icon'>
+
+    <link rel="stylesheet" media="screen" href="/assets/git-scm-c0a300c8711cc437e57352985c4670ef.css" />
+    <script src="/assets/modernizr-73487a82ac9441eca1dffe781de7b411.js"></script>
+    <script src="/assets/modernizr-tests-8c741d16cb1132d4d6ce71230eb164d2.js"></script>
+    <!--[if (gte IE 6)&(lte IE 8)]>
+    <script src="/javascripts/selectivizr-min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body id="documentation">
+
+<div class="inner">
+    <header>
+
+        <a href="/"><img src="/images/logo@2x.png" width="110" height="46" alt="Git" /></a>
+        <span id="tagline"></span>
+        <script type="text/javascript">
+    var taglines = ["fast-version-control","everything-is-local","distributed-even-if-your-workflow-isnt","local-branching-on-the-cheap","distributed-is-the-new-centralized"];
+    var tagline = taglines[Math.floor(Math.random() * taglines.length)];
+    document.getElementById('tagline').innerHTML = '--' + tagline;
+  </script>
+        <form id="search" action="/search/results">
+            <input id="search-text" name="search" placeholder="Search entire site..." autocomplete="off" type="text" />
+        </form>
+        <div id="search-results"></div>
+
+    </header>
+
+</div> <!-- .inner -->
+
+<div class="inner">
+    <div id="content-wrapper">
+        <aside class="sidebar">
+            <nav>
+                <ul>
+                    <li>
+                        <a href="/about">About</a>
+                        <ul class="">
+                            <li>
+                                <a href="/about">Branching and Merging</a>
+                            </li>
+                            <li>
+                                <a href="/about/small-and-fast">Small and Fast</a>
+                            </li>
+                            <li>
+                                <a href="/about/distributed">Distributed</a>
+                            </li>
+                            <li>
+                                <a href="/about/info-assurance">Data Assurance</a>
+                            </li>
+                            <li>
+                                <a href="/about/staging-area">Staging Area</a>
+                            </li>
+                            <li>
+                                <a href="/about/free-and-open-source">Free and Open Source</a>
+                            </li>
+                            <li>
+                                <a href="/about/trademark">Trademark</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="active" href="/doc">Documentation</a>
+                        <ul class="expanded">
+                            <li>
+                                <a href="/docs">Reference</a>
+                            </li>
+                            <li>
+                                <a href="/book">Book</a>
+                            </li>
+                            <li>
+                                <a href="/videos">Videos</a>
+                            </li>
+                            <li>
+                                <a href="/doc/ext">External Links</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/blog">Blog</a>
+                    </li>
+                    <li>
+                        <a href="/downloads">Downloads</a>
+                        <ul class="">
+                            <li>
+                                <a href="/downloads/guis">GUI Clients</a>
+                            </li>
+                            <li>
+                                <a href="/downloads/logos">Logos</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/community">Community</a>
+                    </li>
+                </ul>
+                <hr class="sidebar">
+                <p>
+                    This book is available in
+                    <a href="/book/en">English</a>.
+                </p>
+                <p>
+                    Full translation available in
+                    <a href="/book/de">Deutsch</a>,
+                    <a href="/book/zh">简体中文</a>,
+                    <a href="/book/zh-tw">正體中文</a>,
+                    <a href="/book/fr/v2">Français</a>,
+                    <a href="/book/ja">日本語</a>,
+                    <a href="/book/nl">Nederlands</a>,
+                    <a href="/book/ru">Русский</a>,
+                    <a href="/book/ko">한국어</a>,
+                    <a href="/book/pt-br">Português (Brasil)</a> and
+                    <a href="/book/cs">Čeština</a>.
+                </p>
+                <p>
+                    Partial translations available in
+                    <a href="/book/ar">Arabic</a>,
+                    <a href="/book/es">Español</a>,
+                    <a href="/book/id">Indonesian</a>,
+                    <a href="/book/it">Italiano</a>,
+                    <a href="/book/fi">Suomi</a>,
+                    <a href="/book/mk">Македонски</a>,
+                    <a href="/book/gr">Ελληνικά</a>,
+                    <a href="/book/pl">Polski</a> and
+                    <a href="/book/tr">Türkçe</a>.
+                </p>
+                <p>
+                    Translations started for
+                    <a href="/book/az">Azərbaycan dili</a>,
+                    <a href="/book/be">Беларуская</a>,
+                    <a href="/book/ca">Català</a>,
+                    <a href="/book/eo">Esperanto</a>,
+                    <a href="/book/es-ni">Español (Nicaragua)</a>,
+                    <a href="/book/fa" dir="rtl">فارسی</a>,
+                    <a href="/book/hi">हिन्दी</a>,
+                    <a href="/book/hu">Magyar</a>,
+                    <a href="/book/no-nb">Norwegian Bokmål</a>,
+                    <a href="/book/ro">Română</a>,
+                    <a href="/book/sr">Српски</a>,
+                    <a href="/book/th">ภาษาไทย</a>,
+                    <a href="/book/vi">Tiếng Việt</a>,
+                    <a href="/book/uk">Українська</a> and
+                    <a href="/book/uz/v2">Ўзбекча</a>.
+                </p>
+                <hr class="sidebar"/>
+                <p>
+                    The source of this book is <a href="https://github.com/progit/progit2">hosted on GitHub.</a></br>
+                    Patches, suggestions and comments are welcome.
+                </p>
+
+
+
+            </nav>
+        </aside>
+
+        <div id="content">
+
+
+            <div id='book-chapters'>
+                <a class="dropdown-trigger" id="book-chapters-trigger" data-panel-id="chapters-dropdown" href="#">Chapters ▾</a>
+                <div class='dropdown-panel' id='chapters-dropdown'>
+                    <div class="three-column">
+                        <div class='column-left'>
+                            <ol class='book-toc'>
+                                <li class='chapter'>
+                                    <h2>. <a href="/book/fr/v1/D%C3%A9marrage-rapide">Démarrage rapide</a></h2>
+                                    <ol>
+                                        <li>
+                                            .1
+                                            <a href="/book/fr/v1/D%C3%A9marrage-rapide-%C3%80-propos-de-la-gestion-de-version">À propos de la gestion de version</a>
+                                        </li>
+                                        <li>
+                                            .2
+                                            <a href="/book/fr/v1/D%C3%A9marrage-rapide-Une-rapide-histoire-de-Git">Une rapide histoire de Git</a>
+                                        </li>
+                                        <li>
+                                            .3
+                                            <a href="/book/fr/v1/D%C3%A9marrage-rapide-Rudiments-de-Git">Rudiments de Git</a>
+                                        </li>
+                                        <li>
+                                            .4
+                                            <a href="/book/fr/v1/D%C3%A9marrage-rapide-Installation-de-Git">Installation de Git</a>
+                                        </li>
+                                        <li>
+                                            .5
+                                            <a href="/book/fr/v1/D%C3%A9marrage-rapide-Param%C3%A9trage-%C3%A0-la-premi%C3%A8re-utilisation-de-Git">Paramétrage à la première utilisation de Git</a>
+                                        </li>
+                                        <li>
+                                            .6
+                                            <a href="/book/fr/v1/D%C3%A9marrage-rapide-Obtenir-de-l-aide">Obtenir de l&#39;aide</a>
+                                        </li>
+                                        <li>
+                                            .7
+                                            <a href="/book/fr/v1/D%C3%A9marrage-rapide-R%C3%A9sum%C3%A9">Résumé</a>
+                                        </li>
+                                    </ol>
+                                </li>
+                                <li class='chapter'>
+                                    <h2>. <a href="/book/fr/v1/Les-bases-de-Git">Les bases de Git</a></h2>
+                                    <ol>
+                                        <li>
+                                            .1
+                                            <a href="/book/fr/v1/Les-bases-de-Git-D%C3%A9marrer-un-d%C3%A9p%C3%B4t-Git">Démarrer un dépôt Git</a>
+                                        </li>
+                                        <li>
+                                            .2
+                                            <a href="/book/fr/v1/Les-bases-de-Git-Enregistrer-des-modifications-dans-le-d%C3%A9p%C3%B4t">Enregistrer des modifications dans le dépôt</a>
+                                        </li>
+                                        <li>
+                                            .3
+                                            <a href="/book/fr/v1/Les-bases-de-Git-Visualiser-l-historique-des-validations">Visualiser l&#39;historique des validations</a>
+                                        </li>
+                                        <li>
+                                            .4
+                                            <a href="/book/fr/v1/Les-bases-de-Git-Annuler-des-actions">Annuler des actions</a>
+                                        </li>
+                                        <li>
+                                            .5
+                                            <a href="/book/fr/v1/Les-bases-de-Git-Travailler-avec-des-d%C3%A9p%C3%B4ts-distants">Travailler avec des dépôts distants</a>
+                                        </li>
+                                        <li>
+                                            .6
+                                            <a href="/book/fr/v1/Les-bases-de-Git-%C3%89tiquetage">Étiquetage</a>
+                                        </li>
+                                        <li>
+                                            .7
+                                            <a href="/book/fr/v1/Les-bases-de-Git-Trucs-et-astuces">Trucs et astuces</a>
+                                        </li>
+                                        <li>
+                                            .8
+                                            <a href="/book/fr/v1/Les-bases-de-Git-R%C3%A9sum%C3%A9">Résumé</a>
+                                        </li>
+                                    </ol>
+                                </li>
+                                <li class='chapter'>
+                                    <h2>. <a href="/book/fr/v1/Les-branches-avec-Git">Les branches avec Git</a></h2>
+                                    <ol>
+                                        <li>
+                                            .1
+                                            <a href="/book/fr/v1/Les-branches-avec-Git-Ce-qu-est-une-branche">Ce qu&#39;est une branche</a>
+                                        </li>
+                                        <li>
+                                            .2
+                                            <a href="/book/fr/v1/Les-branches-avec-Git-Brancher-et-fusionner%C2%A0%3A-les-bases">Brancher et fusionner : les bases</a>
+                                        </li>
+                                        <li>
+                                            .3
+                                            <a href="/book/fr/v1/Les-branches-avec-Git-Gestion-de-branches">Gestion de branches</a>
+                                        </li>
+                                        <li>
+                                            .4
+                                            <a href="/book/fr/v1/Les-branches-avec-Git-Travailler-avec-les-branches">Travailler avec les branches</a>
+                                        </li>
+                                        <li>
+                                            .5
+                                            <a href="/book/fr/v1/Les-branches-avec-Git-Les-branches-distantes">Les branches distantes</a>
+                                        </li>
+                                        <li>
+                                            .6
+                                            <a href="/book/fr/v1/Les-branches-avec-Git-Rebaser">Rebaser</a>
+                                        </li>
+                                        <li>
+                                            .7
+                                            <a href="/book/fr/v1/Les-branches-avec-Git-R%C3%A9sum%C3%A9">Résumé</a>
+                                        </li>
+                                    </ol>
+                                </li>
+                            </ol>
+
+                        </div>
+                        <div class='column-middle'>
+                            <ol class='book-toc'>
+                                <li class='chapter'>
+                                    <h2>. <a href="/book/fr/v1/Git-sur-le-serveur">Git sur le serveur</a></h2>
+                                    <ol>
+                                        <li>
+                                            .1
+                                            <a href="/book/fr/v1/Git-sur-le-serveur-Protocoles">Protocoles</a>
+                                        </li>
+                                        <li>
+                                            .2
+                                            <a href="/book/fr/v1/Git-sur-le-serveur-Installation-de-Git-sur-un-serveur">Installation de Git sur un serveur</a>
+                                        </li>
+                                        <li>
+                                            .3
+                                            <a href="/book/fr/v1/Git-sur-le-serveur-G%C3%A9n%C3%A9ration-des-cl%C3%A9s-publiques-SSH">Génération des clés publiques SSH</a>
+                                        </li>
+                                        <li>
+                                            .4
+                                            <a href="/book/fr/v1/Git-sur-le-serveur-Mise-en-place-du-serveur">Mise en place du serveur</a>
+                                        </li>
+                                        <li>
+                                            .5
+                                            <a href="/book/fr/v1/Git-sur-le-serveur-Acc%C3%A8s-public">Accès public</a>
+                                        </li>
+                                        <li>
+                                            .6
+                                            <a href="/book/fr/v1/Git-sur-le-serveur-GitWeb">GitWeb</a>
+                                        </li>
+                                        <li>
+                                            .7
+                                            <a href="/book/fr/v1/Git-sur-le-serveur-Gitosis">Gitosis</a>
+                                        </li>
+                                        <li>
+                                            .8
+                                            <a href="/book/fr/v1/Git-sur-le-serveur-Gitolite">Gitolite</a>
+                                        </li>
+                                        <li>
+                                            .9
+                                            <a href="/book/fr/v1/Git-sur-le-serveur-Le-%3Cem%3Edaemon%3C%2Fem%3E-Git">Le <em>daemon</em> Git</a>
+                                        </li>
+                                        <li>
+                                            .10
+                                            <a href="/book/fr/v1/Git-sur-le-serveur-Git-h%C3%A9berg%C3%A9">Git hébergé</a>
+                                        </li>
+                                        <li>
+                                            .11
+                                            <a href="/book/fr/v1/Git-sur-le-serveur-R%C3%A9sum%C3%A9">Résumé</a>
+                                        </li>
+                                    </ol>
+                                </li>
+                                <li class='chapter'>
+                                    <h2>. <a href="/book/fr/v1/Git-distribu%C3%A9">Git distribué</a></h2>
+                                    <ol>
+                                        <li>
+                                            .1
+                                            <a href="/book/fr/v1/Git-distribu%C3%A9-D%C3%A9veloppements-distribu%C3%A9s">Développements distribués</a>
+                                        </li>
+                                        <li>
+                                            .2
+                                            <a href="/book/fr/v1/Git-distribu%C3%A9-Contribution-%C3%A0-un-projet">Contribution à un projet</a>
+                                        </li>
+                                        <li>
+                                            .3
+                                            <a href="/book/fr/v1/Git-distribu%C3%A9-Maintenance-d-un-projet">Maintenance d&#39;un projet</a>
+                                        </li>
+                                        <li>
+                                            .4
+                                            <a href="/book/fr/v1/Git-distribu%C3%A9-R%C3%A9sum%C3%A9">Résumé</a>
+                                        </li>
+                                    </ol>
+                                </li>
+                                <li class='chapter'>
+                                    <h2>. <a href="/book/fr/v1/Utilitaires-Git">Utilitaires Git</a></h2>
+                                    <ol>
+                                        <li>
+                                            .1
+                                            <a href="/book/fr/v1/Utilitaires-Git-S%C3%A9lection-des-versions">Sélection des versions</a>
+                                        </li>
+                                        <li>
+                                            .2
+                                            <a href="/book/fr/v1/Utilitaires-Git-Indexation-interactive">Indexation interactive</a>
+                                        </li>
+                                        <li>
+                                            .3
+                                            <a href="/book/fr/v1/Utilitaires-Git-Le-remisage">Le remisage</a>
+                                        </li>
+                                        <li>
+                                            .4
+                                            <a href="/book/fr/v1/Utilitaires-Git-R%C3%A9%C3%A9crire-l-historique">Réécrire l&#39;historique</a>
+                                        </li>
+                                        <li>
+                                            .5
+                                            <a href="/book/fr/v1/Utilitaires-Git-Deboguer-avec-Git">Deboguer avec Git</a>
+                                        </li>
+                                        <li>
+                                            .6
+                                            <a href="/book/fr/v1/Utilitaires-Git-Sous-modules">Sous-modules</a>
+                                        </li>
+                                        <li>
+                                            .7
+                                            <a href="/book/fr/v1/Utilitaires-Git-Fusion-de-sous-arborescences">Fusion de sous-arborescences</a>
+                                        </li>
+                                        <li>
+                                            .8
+                                            <a href="/book/fr/v1/Utilitaires-Git-R%C3%A9sum%C3%A9">Résumé</a>
+                                        </li>
+                                    </ol>
+                                </li>
+                            </ol>
+
+                        </div>
+                        <div class='column-right'>
+                            <ol class='book-toc'>
+                                <li class='chapter'>
+                                    <h2>. <a href="/book/fr/v1/Personnalisation-de-Git">Personnalisation de Git</a></h2>
+                                    <ol>
+                                        <li>
+                                            .1
+                                            <a href="/book/fr/v1/Personnalisation-de-Git-Configuration-de-Git">Configuration de Git</a>
+                                        </li>
+                                        <li>
+                                            .2
+                                            <a href="/book/fr/v1/Personnalisation-de-Git-Attributs-Git">Attributs Git</a>
+                                        </li>
+                                        <li>
+                                            .3
+                                            <a href="/book/fr/v1/Personnalisation-de-Git-Crochets-Git">Crochets Git</a>
+                                        </li>
+                                        <li>
+                                            .4
+                                            <a href="/book/fr/v1/Personnalisation-de-Git-Exemple-de-politique-g%C3%A9r%C3%A9e-par-Git">Exemple de politique gérée par Git</a>
+                                        </li>
+                                        <li>
+                                            .5
+                                            <a href="/book/fr/v1/Personnalisation-de-Git-R%C3%A9sum%C3%A9">Résumé</a>
+                                        </li>
+                                    </ol>
+                                </li>
+                                <li class='chapter'>
+                                    <h2>. <a href="/book/fr/v1/Git-et-les-autres-syst%C3%A8mes">Git et les autres systèmes</a></h2>
+                                    <ol>
+                                        <li>
+                                            .1
+                                            <a href="/book/fr/v1/Git-et-les-autres-syst%C3%A8mes-Git-et-Subversion">Git et Subversion</a>
+                                        </li>
+                                        <li>
+                                            .2
+                                            <a href="/book/fr/v1/Git-et-les-autres-syst%C3%A8mes-Migrer-sur-Git">Migrer sur Git</a>
+                                        </li>
+                                        <li>
+                                            .3
+                                            <a href="/book/fr/v1/Git-et-les-autres-syst%C3%A8mes-R%C3%A9sum%C3%A9">Résumé</a>
+                                        </li>
+                                    </ol>
+                                </li>
+                                <li class='chapter'>
+                                    <h2>. <a href="/book/fr/v1/Les-tripes-de-Git">Les tripes de Git</a></h2>
+                                    <ol>
+                                        <li>
+                                            .1
+                                            <a href="/book/fr/v1/Les-tripes-de-Git-Plomberie-et-porcelaine">Plomberie et porcelaine</a>
+                                        </li>
+                                        <li>
+                                            .2
+                                            <a href="/book/fr/v1/Les-tripes-de-Git-Les-objets-Git">Les objets Git</a>
+                                        </li>
+                                        <li>
+                                            .3
+                                            <a href="/book/fr/v1/Les-tripes-de-Git-R%C3%A9f%C3%A9rences-Git">Références Git</a>
+                                        </li>
+                                        <li>
+                                            .4
+                                            <a href="/book/fr/v1/Les-tripes-de-Git-Fichiers-group%C3%A9s">Fichiers groupés</a>
+                                        </li>
+                                        <li>
+                                            .5
+                                            <a href="/book/fr/v1/Les-tripes-de-Git-Les-r%C3%A9f%C3%A9rences-sp%C3%A9cifiques">Les références spécifiques</a>
+                                        </li>
+                                        <li>
+                                            .6
+                                            <a href="/book/fr/v1/Les-tripes-de-Git-Protocoles-de-transfert">Protocoles de transfert</a>
+                                        </li>
+                                        <li>
+                                            .7
+                                            <a href="/book/fr/v1/Les-tripes-de-Git-Maintenance-et-r%C3%A9cup%C3%A9ration-de-donn%C3%A9es">Maintenance et récupération de données</a>
+                                        </li>
+                                        <li>
+                                            .8
+                                            <a href="/book/fr/v1/Les-tripes-de-Git-R%C3%A9sum%C3%A9">Résumé</a>
+                                        </li>
+                                    </ol>
+                                </li>
+                            </ol>
+
+                        </div>
+                    </div>
+                </div>
+
+                <span class="light" id="edition">
+      1st Edition
+    </span>
+            </div>
+
+            <div id='main' class="book edition1">
+                <h1>.5 Démarrage rapide - Paramétrage à la première utilisation de Git</h1>
+                <div><h2>Paramétrage à la première utilisation de Git</h2>
+
+                    <p>Maintenant que vous avez installé Git sur votre système, vous voudrez personnaliser votre environnement Git.
+                        Vous ne devriez avoir à réaliser ces réglages qu&#39;une seule fois ;
+                        ils persisteront lors des mises à jour.
+                        Vous pouvez aussi les changer à tout instant en relançant les mêmes commandes.</p>
+
+                    <p>Git contient un outil appelé <code>git config</code> pour vous permettre de voir et modifier les variables de configuration qui contrôlent tous les aspects de l&#39;apparence et du comportement de Git.
+                        Ces variables peuvent être stockées dans trois endroits différents :</p>
+
+                    <ul>
+                        <li>  Fichier <code>/etc/gitconfig</code> : Contient les valeurs pour tous les utilisateurs et tous les dépôts du système.
+                            Si vous passez l&#39;option <code>--system</code> à <code>git config</code>, il lit et écrit ce fichier spécifiquement.</li>
+                        <li>  Fichier <code>~/.gitconfig</code> : Spécifique à votre utilisateur.
+                            Vous pouvez forcer Git à lire et écrire ce fichier en passant l&#39;option <code>--global</code>.</li>
+                        <li>  Fichier <code>config</code> dans le répertoire Git (c&#39;est-à-dire <code>.git/config</code>) du dépôt en cours d&#39;utilisation : spécifique au seul dépôt en cours.
+                            Chaque niveau surcharge le niveau précédent, donc les valeurs dans <code>.git/config</code> surchargent celles de <code>/etc/gitconfig</code>.</li>
+                    </ul>
+
+                    <p>Sur les systèmes Windows, Git recherche le fichier <code>.gitconfig</code> dans le répertoire <code>$HOME</code> (<code>%USERPROFILE%</code> dans l’environnement natif de Windows) qui est <code>C:\Documents and Settings\$USER</code> ou <code>C:\Users\$USER</code> la plupart du temps, selon la version (<code>$USER</code> devient <code>%USERNAME%</code> dans l’environnement de Windows).
+                        Il recherche tout de même <code>/etc/gitconfig</code>, bien qu&#39;il soit relatif à la racine MSys, qui se trouve où vous aurez décidé d&#39;installer Git sur votre système Windows.</p>
+
+                    <h3 id="Votre-identité"><a href="#Votre-identité">Votre identité</a></h3>
+
+                    <p>La première chose à faire après l&#39;installation de Git est de renseigner votre nom et votre adresse e-mail.
+                        C&#39;est une information importante car toutes les validations dans Git utilisent cette information et elle est indélébile dans toutes les validations que vous pourrez réaliser :</p>
+
+                    <pre><code>$ git config --global user.name &quot;John Doe&quot;
+$ git config --global user.email johndoe@example.com
+</code></pre>
+
+                    <p>Encore une fois, cette étape n&#39;est nécessaire qu&#39;une fois si vous passez l&#39;option <code>--global</code>, parce que Git utilisera toujours cette information pour tout ce que votre utilisateur fera sur ce système.
+                        Si vous souhaitez surcharger ces valeurs avec un nom ou une adresse e-mail différents pour un projet spécifique, vous pouvez lancer ces commandes sans option <code>--global</code> lorsque vous êtes dans ce projet.</p>
+
+                    <h3 id="Votre-éditeur-de-texte"><a href="#Votre-éditeur-de-texte">Votre éditeur de texte</a></h3>
+
+                    <p>À présent que votre identité est renseignée, vous pouvez configurer l&#39;éditeur de texte qui sera utilisé quand Git vous demande de saisir un message.
+                        Par défaut, Git utilise l&#39;éditeur configuré au niveau système, qui est généralement Vi ou Vim.
+                        Si vous souhaitez utiliser un éditeur de texte différent, comme Emacs, vous pouvez entrer ce qui suit :</p>
+
+                    <pre><code>$ git config --global core.editor emacs
+</code></pre>
+
+                    <h3 id="Votre-outil-de-différences"><a href="#Votre-outil-de-différences">Votre outil de différences</a></h3>
+
+                    <p>Une autre option utile est le paramétrage de l&#39;outil de différences à utiliser pour la résolution des conflits de fusion.
+                        Supposons que vous souhaitiez utiliser vimdiff :</p>
+
+                    <pre><code>$ git config --global merge.tool vimdiff
+</code></pre>
+
+                    <p>Git accepte kdiff3, tkdiff, meld, xxdiff, emerge, vimdiff, gvimdiff, ecmerge, et opendiff comme outils valides de fusion.
+                        Vous pouvez aussi paramétrer un outil personnalisé ;
+                        référez-vous au chapitre 7 pour plus d&#39;information sur cette procédure.</p>
+
+                    <h3 id="Vérifier-vos-paramètres"><a href="#Vérifier-vos-paramètres">Vérifier vos paramètres</a></h3>
+
+                    <p>Si vous souhaitez vérifier vos réglages, vous pouvez utiliser la commande <code>git config --list</code> pour lister tous les réglages que Git a pu trouver jusqu&#39;ici :</p>
+
+                    <pre><code>$ git config --list
+user.name=Scott Chacon
+user.email=schacon@gmail.com
+color.status=auto
+color.branch=auto
+color.interactive=auto
+color.diff=auto
+...
+</code></pre>
+
+                    <p>Vous pourrez voir certains paramètres apparaître plusieurs fois car Git lit les mêmes paramètres depuis plusieurs fichiers (<code>/etc/gitconfig</code> et <code>~/.gitconfig</code>, par exemple).
+                        Git utilise la dernière valeur pour chaque paramètre.</p>
+
+                    <p>Vous pouvez aussi vérifier la valeur effective d&#39;un paramètre particulier en tapant <code>git config &lt;paramètre&gt;</code> :</p>
+
+                    <pre><code>$ git config user.name
+Scott Chacon
+</code></pre>
+
+                    <div id="nav"><a href="/book/fr/v1/D%C3%A9marrage-rapide-Installation-de-Git">prev</a> | <a href="/book/fr/v1/D%C3%A9marrage-rapide-Obtenir-de-l-aide">next</a></div></div>
+            </div>
+
+        </div>
+    </div>
+    <footer>
+        <div class="site-source">
+            This <a href="https://github.com/git/git-scm.com/blob/master/README.md#license">open sourced</a> site is <a href="https://github.com/git/git-scm.com">hosted on GitHub.</a><br>
+            Patches, suggestions and comments are welcome.
+        </div>
+        <div class="sfc-member">
+            Git is a member of <a href="/sfc">Software Freedom Conservancy</a>
+        </div>
+    </footer>
+
+    <script src="/assets/jquery-1.7.1.min-01b1ded3b1a4970482bde6a504c08b1b.js"></script>
+    <script src="/assets/jquery-ui-1.8.18.custom.min-b9fd60ca5f0d9f1046a1bb0d6427d724.js"></script>
+    <script src="/assets/jquery.defaultvalue-a81e0ef280e130b8c19c64de0aedac50.js"></script>
+    <script src="/assets/session.min-4311b168a07712f9c67e61e9ccb673e0.js"></script>
+    <script src="/assets/site-8c3003251e35cac8c1663cf44ec2811f.js"></script>
+
+</div>
+
+</body>
+</html>

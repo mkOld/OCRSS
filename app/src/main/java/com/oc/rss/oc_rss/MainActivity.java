@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     Button myButton;
     Context myContext;
     TextView textViewHtmlContent;
+    WebView webViewHtmlContent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +45,11 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.finish(); // we closed this activity after launch the new one
             }
         });
-        textViewHtmlContent = (TextView)findViewById(R.id.tvHTMLText);
-        loadHtmlText();
+
+        //textViewHtmlContent = (TextView)findViewById(R.id.tvHTMLText);
+        //loadHtmlText();
+        webViewHtmlContent = (WebView)findViewById(R.id.wvHTMLText);
+        loadHtmlWebView();
     }
 
     @Override
@@ -78,7 +83,10 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    private void loadHtmlWebView(){
+        webViewHtmlContent.loadUrl("file:///android_asset/page.html");
     }
 
 }

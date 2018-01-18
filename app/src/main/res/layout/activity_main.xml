@@ -27,8 +27,8 @@
             android:layout_height="match_parent"
             android:layout_below="@+id/txtHello"
             android:layout_above="@+id/btnClickHere">
-            <TextView
-                android:id="@+id/tvHTMLText"
+            <WebView
+                android:id="@+id/wvHTMLText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 />
