@@ -25,7 +25,7 @@ import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button myButton;
+    Button myButton, btnListActivity;
     Context myContext;
     TextView textViewHtmlContent;
     WebView webViewHtmlContent;
@@ -37,17 +37,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setTitle("Tuto Appli OpenClassRoom");
         myButton = (Button)findViewById(R.id.btnClickHere);
-        myButton.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(myContext, "CA MARCHE !", Toast.LENGTH_SHORT).show();
-                Log.i("haja", "Ca marche !!!");
-                Intent myIntent = new Intent(myContext, NextActivity.class);
-                startActivity(myIntent);
-                MainActivity.this.finish(); // we closed this activity after launch the new one
-            }
-        });
+        btnListActivity = (Button)findViewById(R.id.btnGoToListAct);
+        initListener();
 
         //textViewHtmlContent = (TextView)findViewById(R.id.tvHTMLText);
         //loadHtmlText();
@@ -68,6 +59,29 @@ public class MainActivity extends AppCompatActivity {
         webViewHtmlContent.getSettings().setJavaScriptEnabled(true);
 
         loadHtmlWebView();
+    }
+
+    private void initListener(){
+        myButton.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(myContext, "CA MARCHE !", Toast.LENGTH_SHORT).show();
+                Log.i("haja", "Ca marche !!!");
+                Intent myIntent = new Intent(myContext, NextActivity.class);
+                startActivity(myIntent);
+                MainActivity.this.finish(); // we closed this activity after launch the new one
+            }
+        });
+
+        btnListActivity.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ListActivity.class);
+                startActivity(intent);
+                MainActivity.this.finish();
+            }
+        });
     }
 
     @Override
