@@ -2,6 +2,7 @@ package com.oc.rss.oc_rss;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
@@ -10,7 +11,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,6 +52,21 @@ public class MainActivity extends AppCompatActivity {
         //textViewHtmlContent = (TextView)findViewById(R.id.tvHTMLText);
         //loadHtmlText();
         webViewHtmlContent = (WebView)findViewById(R.id.wvHTMLText);
+
+        // Ouvre les pages dans le même webview
+        webViewHtmlContent.setWebViewClient(new WebViewClient(){
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    view.loadUrl(request.getUrl().toString());
+                }
+                return false;
+            }
+        });
+
+        // active javascript sur la webview
+        webViewHtmlContent.getSettings().setJavaScriptEnabled(true);
+
         loadHtmlWebView();
     }
 
